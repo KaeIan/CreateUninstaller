@@ -25,4 +25,4 @@ for roots,dirs,files in os.walk(rootPath):
 			print(fullPath + file)
 			f.write(removeCommand + fullPath + file + "\n")
 f.close()
-print("Wrote uninstall path to: " + uninstallPath)
+print("generated uninstall script to: " + uninstallPath)
