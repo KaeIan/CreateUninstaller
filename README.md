@@ -8,4 +8,4 @@ Can be used if you are making a release and want to clean all files associated w
 
 # Requirements
 
-python
+* python
