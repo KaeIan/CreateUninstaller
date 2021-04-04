@@ -15,12 +15,12 @@ removeCommand = "Remove-Item " if scriptType == "powershell" else "rm "
 uninstallPath = rootPath + "/uninstall" + extension
 f= open(uninstallPath,"w+")
 
-for subdir,dirs,files in os.walk(rootPath):
-	if(".git" in subdir) :
-		continue
+excludePaths = set([".git", "bin", "obj", ".vs", ".vscode"])
+
+for subdir,dirs,files in os.walk(rootPath, True):
+	dirs[:] = [d for d in dirs if d not in excludePaths]
 	for file in files:
 		relPath = os.path.relpath(os.path.join(subdir, file), rootPath)
-		print(relPath)
 		f.write(removeCommand + "\"" + relPath + "\"" + "\n")
 f.close()
 print("generated uninstall script to: " + uninstallPath)
